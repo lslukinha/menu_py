@@ -4,19 +4,17 @@ def add_receita():
     pais_origem = input("Digite o país de origem da receita : ")
     ingredientes = input("Digite os ingredientes da receita separados por ';' : ")
     preparo = input("Digite o modo de preparo da receita separado por ';' : ")
-    novaReceita =  f"{nome},{pais_origem},{ingredientes},{preparo}\n\n"
+    novaReceita =  f"Nome da Receita: {nome}\nPaís de origem: {pais_origem}\nIngredientes da Receita: {ingredientes}\nPreparo: {preparo}\n\n"
     print(novaReceita)
     file.write(novaReceita)
     file.close()
     print("Nova receita adicionada com sucesso!")
-def visualizarReceitas(receitas_array):
-    for receita in receitas_array:
-        print(f"Nome: {receita['nome']}")
-        print(f"Pais de origem: {receita['pais_origem']}")
-        print("Ingredientes:", receita['ingredientes'])
-        print("Preparo:", receita['preparo'])
-        print()
-receitas_array=[]
+
+def visualizarReceitas(novaReceita):
+    file = open("menu.txt","r")
+    file.write(novaReceita)
+    file.close()
+
 while True:
     print("\nMenu:")
     print("1- Adicionar receita")
@@ -27,6 +25,6 @@ while True:
     escolha = input("Escolha a opção desejada(1-5): ")
 
     if escolha == "1":
-        add_receita(receitas_array)
+         add_receita()
     elif escolha =="4":
-        visualizarReceitas(receitas_array)
+        visualizarReceitas()
