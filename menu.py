@@ -34,7 +34,7 @@ def att_receita():
             else:
                 file.write(linhas[i])
                 i += 1
-                print('teste')
+                print('teste2')
 
     if encontrou:
         print("Receita atualizada com sucesso!")
