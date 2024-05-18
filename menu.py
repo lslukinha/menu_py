@@ -97,7 +97,7 @@ while True:
     print("3- Colocar receita como favorita")
     print("4- Visualizar receitas")
     print("5- Visualizar receitas favoritas")
-   print("6- Filtrar receitas por país")
+    print("6- Filtrar receitas por país")
     print("7- Sair")
     escolha = input("Escolha a opção desejada (1-6): ")
 
