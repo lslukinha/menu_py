@@ -102,7 +102,44 @@ def remover_receita():
 
     file.close()
 
+def menu_principal():
+    while True:
+        print("\nMenu:")
+        print("1- Adicionar receita")
+        print("2- Atualizar receita")
+        print("3- Colocar receita como favorita")
+        print("4- Visualizar receitas")
+        print("5- Visualizar receitas favoritas")
+        print("6- Filtrar receitas por país")
+        print("7- Remover receita")
+        print("8- Sair")
+        escolha = input("Escolha a opção desejada (1-8): ")
 
+        if escolha == "1":
+            add_receita()
+            
+        elif escolha == "2":
+            att_receita()
+
+        elif escolha == "3":
+            add_favorito()
+
+        elif escolha == "4":
+            visualizar_receitas()
+
+        elif escolha == "5":
+            visualizar_favoritos()
+
+        elif escolha == "6":
+            filtrar_paises()
+
+        elif escolha == "7":
+            remover_receita()
+
+        elif escolha == "8":
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
 
 def visualizar_favoritos():
     if favoritos:
@@ -113,32 +150,4 @@ def visualizar_favoritos():
         print("Nenhuma receita favorita marcada.")
 
 while True:
-    print("\nMenu:")
-    print("1- Adicionar receita")
-    print("2- Atualizar receita")
-    print("3- Colocar receita como favorita")
-    print("4- Visualizar receitas")
-    print("5- Visualizar receitas favoritas")
-    print("6- Filtrar receitas por país")
-    print("7- Remover receitas")
-    print("8- Sair")
-    escolha = input("Escolha a opção desejada (1-6): ")
-
-    if escolha == "1":
-        add_receita()
-    elif escolha == "2":
-        att_receita()
-    elif escolha == "3":
-        add_favorito()
-    elif escolha == "4":
-        visualizar_receitas()
-    elif escolha == "5":
-        visualizar_favoritos()
-    elif escolha == "6":
-        filtrar_paises() 
-    elif escolha == "7":
-        remover_receita()
-    elif escolha == "8":
-        break
-    else:
-        print("Opção inválida. Tente novamente.")
+    menu_principal()
