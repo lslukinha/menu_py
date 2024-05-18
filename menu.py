@@ -80,6 +80,28 @@ def filtrar_paises():
     
     if not encontrou_resultado:
         print(f"Não foram encontradas receitas do país '{pais_filtro.capitalize()}'.")
+        
+def remover_receita():
+    nome_receita = input("Digite o nome da receita que deseja remover: ")
+    encontrou = False
+
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    file.close()
+
+    file = open("menu.txt", "w")
+    i = 0
+    while i < len(linhas):
+        if nome_receita in linhas[i]:
+            encontrou = True
+            print("Receita removida:", linhas[i].strip())
+            i += 5
+        else:
+            file.write(linhas[i])
+            i += 1
+
+    file.close()
+
 
 
 def visualizar_favoritos():
@@ -98,7 +120,8 @@ while True:
     print("4- Visualizar receitas")
     print("5- Visualizar receitas favoritas")
     print("6- Filtrar receitas por país")
-    print("7- Sair")
+    print("7- Remover receitas")
+    print("8- Sair")
     escolha = input("Escolha a opção desejada (1-6): ")
 
     if escolha == "1":
@@ -114,6 +137,8 @@ while True:
     elif escolha == "6":
         filtrar_paises() 
     elif escolha == "7":
+        remover_receita()
+    elif escolha == "8":
         break
     else:
         print("Opção inválida. Tente novamente.")
