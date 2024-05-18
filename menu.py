@@ -65,6 +65,22 @@ def add_favorito():
 
     if not encontrou:
         print("Receita não encontrada.")
+def filtrar_paises():
+    pais_filtro = input("Digite o país de origem para filtrar as receitas: ").strip().lower()
+    encontrou_resultado = False
+    file = None
+    
+    file = open("menu.txt", "r")
+    receitas = file.readlines()
+    for receita in receitas:
+        if f"país de origem: {pais_filtro}" in receita.lower():
+            print(receita)
+            encontrou_resultado = True
+    file.close()
+    
+    if not encontrou_resultado:
+        print(f"Não foram encontradas receitas do país '{pais_filtro.capitalize()}'.")
+
 
 def visualizar_favoritos():
     if favoritos:
@@ -81,7 +97,8 @@ while True:
     print("3- Colocar receita como favorita")
     print("4- Visualizar receitas")
     print("5- Visualizar receitas favoritas")
-    print("6- Sair")
+   print("6- Filtrar receitas por país")
+    print("7- Sair")
     escolha = input("Escolha a opção desejada (1-6): ")
 
     if escolha == "1":
@@ -95,6 +112,9 @@ while True:
     elif escolha == "5":
         visualizar_favoritos()
     elif escolha == "6":
+        filtrar_paises()
+
+    elif escolha == "7":
         break
     else:
         print("Opção inválida. Tente novamente.")
