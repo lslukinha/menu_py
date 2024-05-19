@@ -102,8 +102,15 @@ def remover_receita():
 
     file.close()
 
-def menu_principal():
-    while True:
+def visualizar_favoritos():
+    if favoritos:
+        print("Receitas Favoritas:")
+        for receita in favoritos:
+            print(receita)
+    else:
+        print("Nenhuma receita favorita marcada.")
+
+while True:
         print('''
 ███╗░░░███╗███████╗███╗░░██╗██╗░░░██╗  ██████╗░██████╗░██╗███╗░░██╗░█████╗░██╗██████╗░░█████╗░██╗░░░░░
 ████╗░████║██╔════╝████╗░██║██║░░░██║  ██╔══██╗██╔══██╗██║████╗░██║██╔══██╗██║██╔══██╗██╔══██╗██║░░░░░
@@ -147,13 +154,3 @@ def menu_principal():
         else:
             print("Opção inválida. Tente novamente.")
 
-def visualizar_favoritos():
-    if favoritos:
-        print("Receitas Favoritas:")
-        for receita in favoritos:
-            print(receita)
-    else:
-        print("Nenhuma receita favorita marcada.")
-
-while True:
-    menu_principal()
