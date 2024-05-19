@@ -66,6 +66,15 @@ def add_favorito():
 
     if not encontrou:
         print("Receita não encontrada.")
+
+def visualizar_favoritos():
+    if favoritos:
+        print("Receitas Favoritas:")
+        for receita in favoritos:
+            print(receita)
+    else:
+        print("Nenhuma receita favorita marcada.")
+
 def filtrar_paises():
     pais_filtro = input("Digite o país de origem para filtrar as receitas: ").strip().lower()
     encontrou_resultado = False
@@ -102,14 +111,6 @@ def remover_receita():
             i += 1
 
     file.close()
-
-def visualizar_favoritos():
-    if favoritos:
-        print("Receitas Favoritas:")
-        for receita in favoritos:
-            print(receita)
-    else:
-        print("Nenhuma receita favorita marcada.")
 
 def sugerir_receita():
     file = open("menu.txt", "r")
