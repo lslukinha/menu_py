@@ -133,6 +133,23 @@ def sugerir_receita():
         print(sugestao)
     else:
         print("Não há receitas disponíveis para sugerir.")
+def buscar_por_ingredientes():
+    ingredientes_busca = input("Digite os ingredientes que deseja buscar (separados por vírgula): ").strip().lower().split(',')
+    encontrou_resultado = False
+
+    file = open("menu.txt", "r")
+    receitas = file.readlines()
+    file.close()
+
+    print("Resultados da busca:")
+    for i in range(0, len(receitas), 5):
+        ingredientes_receita = receitas[i+2].split(": ")[1].strip().lower().split(';')
+        if all(ingrediente in ingredientes_receita for ingrediente in ingredientes_busca):
+            print(receitas[i], receitas[i+1], receitas[i+2], receitas[i+3], sep="")
+            encontrou_resultado = True
+
+    if not encontrou_resultado:
+        print("Nenhuma receita encontrada com os ingredientes especificados.")
 
 while True:
         print('''
@@ -150,8 +167,9 @@ while True:
         print('''6- Filtrar receitas por país''')
         print('''7- Remover receita''')
         print('''8- Sugerir receita''')
-        print('''9- Sair''')
-        escolha = input('''Escolha a opção desejada (1-9): ''')
+        print('''9-Buscar Ingredientes''')
+        print('''10- Sair''')
+        escolha = input('''Escolha a opção desejada (1-10): ''')
 
         if escolha == "1":
             add_receita()
@@ -176,8 +194,11 @@ while True:
 
         elif escolha == "8":
             sugerir_receita()
-
+            
         elif escolha == "9":
+            buscar_por_ingredientes()
+        
+        elif escolha == "10":
             break
         else:
             print("Opção inválida. Tente novamente.")
