@@ -152,6 +152,33 @@ def buscar_por_ingredientes():
     if not encontrou_resultado:
         print("Nenhuma receita encontrada com os ingredientes especificados.")
 
+def adicionar_nota_pessoal():
+    nome_receita = input("Digite o nome da receita à qual deseja adicionar uma nota pessoal: ")
+    encontrou = False
+
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    file.close()
+
+    file = open("menu.txt", "w")
+    i = 0
+    while i < len(linhas):
+        if nome_receita in linhas[i]:
+            encontrou = True
+            nota_pessoal = input("Digite sua nota pessoal para esta receita: ")
+            linhas[i + 4] = f"Nota Pessoal: {nota_pessoal}\n"
+            print("Nota pessoal adicionada com sucesso.")
+            file.writelines(linhas)
+            break
+        else:
+            file.write(linhas[i])
+            i += 1
+
+    file.close()
+
+    if not encontrou:
+        print("Receita não encontrada.")
+
 while True:
         print('''
 ███╗░░░███╗███████╗███╗░░██╗██╗░░░██╗  ██████╗░██████╗░██╗███╗░░██╗░█████╗░██╗██████╗░░█████╗░██╗░░░░░
@@ -168,9 +195,10 @@ while True:
         print('''6- Filtrar receitas por país''')
         print('''7- Remover receita''')
         print('''8- Sugerir receita''')
-        print('''9-Buscar Ingredientes''')
-        print('''10- Sair''')
-        escolha = input('''Escolha a opção desejada (1-10): ''')
+        print('''9- Buscar ingredientes''')
+        print('''10 Dar Nota''')
+        print('''11- Sair''')
+        escolha = input('''Escolha a opção desejada (1-11): ''')
 
         if escolha == "1":
             add_receita()
@@ -195,11 +223,14 @@ while True:
 
         elif escolha == "8":
             sugerir_receita()
-            
+
         elif escolha == "9":
             buscar_por_ingredientes()
         
         elif escolha == "10":
+            adicionar_nota_pessoal()
+       
+        elif escolha == "11":
             break
         else:
             print("Opção inválida. Tente novamente.")
