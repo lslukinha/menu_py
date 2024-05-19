@@ -92,6 +92,12 @@ def filtrar_paises():
         print(f"Não foram encontradas receitas do país '{pais_filtro.capitalize()}'.")
         
 def remover_receita():
+    print("Receitas existentes no menu:")
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    for linha in linhas:
+        print(linha.strip())
+    file.close()
     nome_receita = input("Digite o nome da receita que deseja remover: ")
     encontrou = False
 
