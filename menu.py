@@ -90,6 +90,13 @@ def visualizar_favoritos():
         print("Nenhuma receita favorita marcada.")
 
 def filtrar_paises():
+    print("Receitas existentes no menu:")
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    for linha in linhas:
+        print(linha.strip())
+    file.close()
+    
     pais_filtro = input("Digite o país de origem para filtrar as receitas: ").strip().lower()
     encontrou_resultado = False
     file = None
