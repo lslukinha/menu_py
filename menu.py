@@ -56,6 +56,13 @@ def visualizar_receitas():
     file.close()
 
 def add_favorito():
+    print("Receitas existentes no menu:")
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    for linha in linhas:
+        print(linha.strip())
+    file.close()
+    
     nome_receita = input("Digite o nome da receita que deseja marcar como favorita: ")
     file = open("menu.txt", "r")
     linhas = file.readlines()
