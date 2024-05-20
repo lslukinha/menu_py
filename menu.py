@@ -1,6 +1,6 @@
 favoritos = []
 receitas = []
-
+import os; os.system('cls')
 def add_receita():
     file = open("menu.txt", "a")
     nome = input("Digite o nome da receita: ")
@@ -52,7 +52,13 @@ def att_receita():
 
 def visualizar_receitas():
     file = open("menu.txt", "r")
+    os.system("cls")
     print(file.read())
+    a = input("Deseja voltar ao menu principal? ")
+
+    if a == "nao":
+        return a
+    os.system("cls")
     file.close()
 
 def add_favorito():
@@ -237,7 +243,9 @@ while True:
             add_favorito()
 
         elif escolha == "4":
-            visualizar_receitas()
+            ver = visualizar_receitas()
+            if ver == "nao":
+                break
 
         elif escolha == "5":
             visualizar_favoritos()
