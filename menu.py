@@ -13,6 +13,13 @@ def add_receita():
     print("Nova receita adicionada com sucesso!")
 
 def att_receita():
+    print("Receitas existentes no menu:")
+    file = open("menu.txt", "r")
+    linhas = file.readlines()
+    for linha in linhas:
+        print(linha.strip())
+    file.close()
+    
     nome_antigo = input("Digite o nome da receita que deseja atualizar: ")
     encontrou = False
 
