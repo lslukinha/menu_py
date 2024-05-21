@@ -136,15 +136,17 @@ def visualizar_receitas_filtradas():
     with open("menu.txt", "r") as file:
         receita_atual = []
         for linha in file:
-            if linha.strip():  
+            if linha.strip():
                 receita_atual.append(linha)
             else:
 
-                if "país de origem:" in receita_atual[1].strip().lower() and pais_filtro in receita_atual[1].strip().lower():
-                    encontrou_resultado = True
-                    for linha_receita in receita_atual:
-                        print(linha_receita, end="")
-                    print()  
+                for item in receita_atual:
+                    if "país de origem:" in item.lower() and pais_filtro in item.lower():
+                        encontrou_resultado = True
+                        for linha_receita in receita_atual:
+                            print(linha_receita, end="")
+                        print()
+                        break  
                 receita_atual = []
 
     if not encontrou_resultado:
@@ -198,11 +200,13 @@ def sugerir_receita():
         print(sugestao)
     else:
         print("Não há receitas disponíveis para sugerir.")
-        
+
+    input("Pressione Enter para voltar ao menu principal...")
+
 def adicionar_nota_pessoal():
     terminal_clean()
     exibir_menu()
-    nome_receita = input("Digite o nome da receita à qual deseja adicionar uma nota pessoal: ")
+    nome_receita = input("Digite o nome da receita à qual deseja adicionar uma nota pessoal: ").strip()
     encontrou = False
 
     with open("menu.txt", "r") as file:
@@ -216,7 +220,7 @@ def adicionar_nota_pessoal():
             linhas.insert(i + 4, f"Nota Pessoal: {nota_pessoal}\n")
             print("Nota pessoal adicionada com sucesso.")
             break
-        i += 5
+        i += 1
 
     if encontrou:
         with open("menu.txt", "w") as file:
