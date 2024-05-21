@@ -98,7 +98,6 @@ def visualizar_receitas():
 def add_favorito():
     terminal_clean()
     exibir_menu()
-
     nome_receita = input("Digite o nome da receita que deseja marcar como favorita: ")
     encontrou = False
 
@@ -128,22 +127,31 @@ def visualizar_favoritos():
     retornar= input("Pressione Enter para voltar ao menu principal...")
     terminal_clean()
 
-def filtrar_paises():
+def visualizar_receitas_filtradas():
     terminal_clean()
-    exibir_menu()
 
     pais_filtro = input("Digite o país de origem para filtrar as receitas: ").strip().lower()
     encontrou_resultado = False
 
     with open("menu.txt", "r") as file:
-        receitas = file.readlines()
-        for i in range(0, len(receitas), 5):
-            if f"País de origem: {pais_filtro}" in receitas[i+1].strip().lower():
-                print(receitas[i], receitas[i+1], receitas[i+2], receitas[i+3], receitas[i+4], sep="")
-                encontrou_resultado = True
+        receita_atual = []
+        for linha in file:
+            if linha.strip():  
+                receita_atual.append(linha)
+            else:
+
+                if "país de origem:" in receita_atual[1].strip().lower() and pais_filtro in receita_atual[1].strip().lower():
+                    encontrou_resultado = True
+                    for linha_receita in receita_atual:
+                        print(linha_receita, end="")
+                    print()  
+                receita_atual = []
 
     if not encontrou_resultado:
         print(f"Não foram encontradas receitas do país '{pais_filtro.capitalize()}'.")
+
+    input("Pressione Enter para voltar ao menu principal...")
+    terminal_clean()
 
 def remover_receita():
     terminal_clean()
@@ -173,8 +181,6 @@ def sugerir_receita():
     terminal_clean()
     with open("menu.txt", "r") as file:
         linhas = file.readlines()
-
-    receitas.clear()
     i = 0
     while i < len(linhas):
         if "Nome da Receita:" in linhas[i]:
@@ -250,7 +256,7 @@ while True:
     elif escolha == "5":
         visualizar_favoritos()
     elif escolha == "6":
-        filtrar_paises()
+        visualizar_receitas_filtradas()
     elif escolha == "7":
         remover_receita()
     elif escolha == "8":
